@@ -5,30 +5,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi Página Web</title>
     <style>
+        /* Estilos generales para el body */
         body {
             background-color: #000000; /* Fondo inicial negro */
             color: white; /* Texto blanco */
             font-family: Arial, sans-serif;
-            transition: background-color 0.5s ease; /* Para una transición suave */
+            height: 100vh; /* Asegura que el body ocupe toda la altura de la ventana */
+            display: flex; /* Usamos flexbox */
+            justify-content: center; /* Centra horizontalmente */
+            align-items: center; /* Centra verticalmente */
+            margin: 0; /* Elimina márgenes por defecto */
+            transition: background-color 0.5s ease; /* Transición suave */
         }
+
+        /* Estilos del botón */
         #button {
             padding: 10px 20px;
             background-color: #444;
             border: none;
             color: white;
             cursor: pointer;
+            font-size: 18px;
+            border-radius: 5px;
         }
+
         #button:hover {
             background-color: #666;
+        }
+
+        /* Contenedor para los elementos (título, texto y botón) */
+        .content {
+            text-align: center; /* Centra el texto */
         }
     </style>
 </head>
 <body>
-    <h1>¡Hola, Mundo!</h1>
-    <p>Haz clic en el botón para cambiar el fondo.</p>
-    
-    <!-- Botón para cambiar el color de fondo -->
-    <button id="button">Cambiar color de fondo</button>
+    <div class="content">
+        <h1>¡Hola, Mundo!</h1>
+        <p>Haz clic en el botón para cambiar el fondo.</p>
+        <button id="button">Cambiar color de fondo</button>
+    </div>
 
     <script>
         // Seleccionar el botón
