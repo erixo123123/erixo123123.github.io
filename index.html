@@ -3,71 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Página Web con Música</title>
+    <title>Juego del Gatito</title>
     <style>
         body {
             background-color: #000000; /* Fondo negro */
             color: white; /* Texto blanco */
             font-family: Arial, sans-serif;
-            height: 100vh; /* Asegura que el body ocupe toda la altura de la ventana */
-            margin: 0; /* Elimina márgenes por defecto */
-            display: flex; /* Usamos flexbox */
-            justify-content: center; /* Centra horizontalmente */
-            align-items: flex-start; /* Alinea los elementos al inicio (arriba) */
-            flex-direction: column; /* Asegura que los elementos se alineen verticalmente */
-            padding-top: 50px; /* Agrega espacio en la parte superior */
-            transition: background-color 0.5s ease; /* Transición suave */
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
 
-        #button {
-            padding: 10px 20px;
-            background-color: #444;
-            border: none;
-            color: white;
-            cursor: pointer;
-            font-size: 18px;
-            border-radius: 5px;
-            margin-top: 20px; /* Agrega un pequeño espacio entre el texto y el botón */
+        canvas {
+            border: 2px solid white;
         }
 
-        #button:hover {
-            background-color: #666;
-        }
-
-        .content {
-            text-align: center; /* Centra el texto */
-        }
-
-        audio {
-            margin-top: 20px; /* Agrega un espacio entre el botón y el reproductor */
+        h1 {
+            text-align: center;
         }
     </style>
 </head>
 <body>
-    <div class="content">
-        <h1>¡Hola, Mundo!</h1>
-        <p>Haz clic en el botón para cambiar el fondo.</p>
-        <button id="button">Cambiar color de fondo</button>
 
-        <!-- Reproductor de audio -->
-        <br><br>
-        <audio controls autoplay>
-            <source src="ruta/a/tu/musica.mp3" type="audio/mp3">
-            Tu navegador no soporta el elemento de audio.
-        </audio>
-    </div>
+<h1>¡Ayuda al gatito a llegar a la meta!</h1>
+<canvas id="gameCanvas" width="800" height="400"></canvas>
 
-    <script>
-        // Seleccionar el botón
-        const button = document.getElementById('button');
+<script>
+    // Obtener el contexto del canvas
+    const canvas = document.getElementById("gameCanvas");
+    const ctx = canvas.getContext("2d");
 
-        // Agregar un event listener para cambiar el fondo al hacer clic
-        button.addEventListener('click', function() {
-            // Cambiar el color del fondo
-            document.body.style.backgroundColor = document.body.style.backgroundColor === 'rgb(0, 0, 0)' ? '#ffffff' : '#000000';
-            // Cambiar el color del texto para que sea legible
-            document.body.style.color = document.body.style.backgroundColor === 'rgb(0, 0, 0)' ? 'white' : 'black';
-        });
-    </script>
+    // Definir el gatito
+    const cat = {
+        x: 10, // Posición inicial en el eje X
+        y: 180, // Posición fija en el eje Y
+        width: 50,
+        height: 50,
+        speed: 5, // Velocidad del gatito
+        color: "orange"
+    };
+
+    // Meta
+    const goalX = 750; // La posición X donde debe llegar el gatito
+
+    // Dibujar el gatito
+    function drawCat() {
+        ctx.fillStyle = cat.color;
+        ctx.fillRect(cat.x, cat.y, cat.width, cat.height);
+    }
+
+    // Función para dibujar el juego
+    function draw() {
+        // Limpiar el canvas
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Dibujar el gatito
+        drawCat();
+
+        // Dibujar la meta
+        ctx.fillStyle = "green";
+        ctx.fillRect(goalX, 0, 10, canvas.height);
+
+        // Verificar si el gatito ha llegado a la meta
+        if (cat.x + cat.width >= goalX) {
+            ctx.fillStyle = "white";
+            ctx.font = "30px Arial";
+            ctx.fillText("¡Ganaste!", 300, 200);
+        }
+    }
+
+    // Mover el gatito al presionar la tecla W
+    function moveCat(event) {
+        if (event.key === "w" || event.key === "W") {
+            cat.x += cat.speed;
+        }
+    }
+
+    // Escuchar el evento de presionar una tecla
+    window.addEventListener("keydown", moveCat);
+
+    // Llamar a la función draw cada 16ms (~60fps)
+    setInterval(draw, 16);
+</script>
+
 </body>
 </html>
