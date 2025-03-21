@@ -3,22 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Página Web</title>
+    <title>Mi Página Web con Música</title>
     <style>
-        /* Estilos generales para el body */
         body {
-            background-color: #000000; /* Fondo inicial negro */
+            background-color: #000000; /* Fondo negro */
             color: white; /* Texto blanco */
             font-family: Arial, sans-serif;
             height: 100vh; /* Asegura que el body ocupe toda la altura de la ventana */
+            margin: 0; /* Elimina márgenes por defecto */
             display: flex; /* Usamos flexbox */
             justify-content: center; /* Centra horizontalmente */
-            align-items: center; /* Centra verticalmente */
-            margin: 0; /* Elimina márgenes por defecto */
+            align-items: flex-start; /* Alinea los elementos al inicio (arriba) */
+            flex-direction: column; /* Asegura que los elementos se alineen verticalmente */
+            padding-top: 50px; /* Agrega espacio en la parte superior */
             transition: background-color 0.5s ease; /* Transición suave */
         }
 
-        /* Estilos del botón */
         #button {
             padding: 10px 20px;
             background-color: #444;
@@ -27,15 +27,19 @@
             cursor: pointer;
             font-size: 18px;
             border-radius: 5px;
+            margin-top: 20px; /* Agrega un pequeño espacio entre el texto y el botón */
         }
 
         #button:hover {
             background-color: #666;
         }
 
-        /* Contenedor para los elementos (título, texto y botón) */
         .content {
             text-align: center; /* Centra el texto */
+        }
+
+        audio {
+            margin-top: 20px; /* Agrega un espacio entre el botón y el reproductor */
         }
     </style>
 </head>
@@ -44,6 +48,13 @@
         <h1>¡Hola, Mundo!</h1>
         <p>Haz clic en el botón para cambiar el fondo.</p>
         <button id="button">Cambiar color de fondo</button>
+
+        <!-- Reproductor de audio -->
+        <br><br>
+        <audio controls autoplay>
+            <source src="ruta/a/tu/musica.mp3" type="audio/mp3">
+            Tu navegador no soporta el elemento de audio.
+        </audio>
     </div>
 
     <script>
