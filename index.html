@@ -6,14 +6,41 @@
     <title>Mi Página Web</title>
     <style>
         body {
-            background-color: #000000; /* Cambiar color de fondo */
-            color: white; /* Cambiar color de texto */
+            background-color: #000000; /* Fondo inicial negro */
+            color: white; /* Texto blanco */
             font-family: Arial, sans-serif;
+            transition: background-color 0.5s ease; /* Para una transición suave */
+        }
+        #button {
+            padding: 10px 20px;
+            background-color: #444;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+        #button:hover {
+            background-color: #666;
         }
     </style>
 </head>
 <body>
     <h1>¡Hola, Mundo!</h1>
-    <p>Esta es mi página web.</p>
+    <p>Haz clic en el botón para cambiar el fondo.</p>
+    
+    <!-- Botón para cambiar el color de fondo -->
+    <button id="button">Cambiar color de fondo</button>
+
+    <script>
+        // Seleccionar el botón
+        const button = document.getElementById('button');
+
+        // Agregar un event listener para cambiar el fondo al hacer clic
+        button.addEventListener('click', function() {
+            // Cambiar el color del fondo
+            document.body.style.backgroundColor = document.body.style.backgroundColor === 'rgb(0, 0, 0)' ? '#ffffff' : '#000000';
+            // Cambiar el color del texto para que sea legible
+            document.body.style.color = document.body.style.backgroundColor === 'rgb(0, 0, 0)' ? 'white' : 'black';
+        });
+    </script>
 </body>
 </html>
