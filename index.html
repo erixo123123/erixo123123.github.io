@@ -3,157 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bienvenida al Juego del Gatito</title>
+    <title>Gato Corriendo</title>
     <style>
         body {
-            background-color: #000000; /* Fondo negro */
-            color: white; /* Texto blanco */
-            font-family: Arial, sans-serif;
+            background-color: #000; /* Fondo negro */
             margin: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            flex-direction: column;
         }
 
-        canvas {
-            border: 2px solid white;
-            display: none; /* Ocultamos el canvas hasta que se inicie el juego */
+        /* Definir el contorno del gato */
+        .cat {
+            position: relative;
+            width: 80px;
+            height: 80px;
+            background-color: black;
+            border-radius: 50%;
+            animation: run 3s linear infinite; /* Animación */
         }
 
-        #welcomePage {
-            text-align: center;
+        /* Definir la animación del gato corriendo */
+        @keyframes run {
+            0% {
+                transform: translateX(0);
+            }
+            50% {
+                transform: translateX(80vw); /* Mover 80% del ancho de la pantalla */
+            }
+            100% {
+                transform: translateX(0);
+            }
         }
 
-        #gamePage {
-            display: none;
-            text-align: center;
+        /* Agregar orejas al gato */
+        .ear {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: black;
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
         }
 
-        #button {
-            padding: 10px 20px;
-            background-color: #444;
-            border: none;
-            color: white;
-            cursor: pointer;
-            font-size: 18px;
-            border-radius: 5px;
-            margin-top: 20px;
+        .ear.left {
+            left: 0;
+            top: -15px;
         }
 
-        #button:hover {
-            background-color: #666;
-        }
-
-        h1 {
-            font-size: 30px;
+        .ear.right {
+            right: 0;
+            top: -15px;
         }
 
     </style>
 </head>
 <body>
 
-<div id="welcomePage">
-    <h1>¡Hola hermosa!</h1>
-    <p>Un villano raptó tu gatito y debes recuperarlo</p>
-    <p>Haz clic en el botón para ir por el</p>
-    <button id="startButton">Iniciar Juego</button>
+<div class="cat">
+    <div class="ear left"></div>
+    <div class="ear right"></div>
 </div>
-
-<div id="gamePage">
-    <h1>¡Ayuda al gatito a llegar a la meta!</h1>
-    <canvas id="gameCanvas" width="800" height="400"></canvas>
-</div>
-
-<script>
-    // Obtener el contexto del canvas
-    const canvas = document.getElementById("gameCanvas");
-    const ctx = canvas.getContext("2d");
-
-    // Definir el gatito
-    const cat = {
-        x: 10, // Posición inicial en el eje X
-        y: 180, // Posición fija en el eje Y
-        width: 50,
-        height: 50,
-        speed: 5, // Velocidad del gatito
-        color: "orange"
-    };
-
-    // Meta
-    const goalX = 750; // La posición X donde debe llegar el gatito
-
-    // Dibujar el gatito
-    function drawCat() {
-        ctx.fillStyle = cat.color;
-        ctx.fillRect(cat.x, cat.y, cat.width, cat.height);
-    }
-
-    // Función para dibujar el juego
-    function draw() {
-        // Limpiar el canvas
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        // Dibujar el gatito
-        drawCat();
-
-        // Dibujar la meta
-        ctx.fillStyle = "green";
-        ctx.fillRect(goalX, 0, 10, canvas.height);
-
-        // Verificar si el gatito ha llegado a la meta
-        if (cat.x + cat.width >= goalX) {
-            ctx.fillStyle = "white";
-            ctx.font = "30px Arial";
-            ctx.fillText("¡Ganaste!", 300, 200);
-        }
-    }
-
-    // Mover el gatito al presionar la tecla W (en el escritorio)
-    function moveCat(event) {
-        if (event.key === "w" || event.key === "W") {
-            cat.x += cat.speed;
-        }
-    }
-
-    // Función para mover el gatito con el toque en pantalla (en dispositivos móviles)
-    function moveCatOnTouch(event) {
-        // Evitar el comportamiento por defecto (scroll)
-        event.preventDefault();
-
-        // Obtener la posición del toque
-        const touchX = event.touches[0].clientX;
-
-        // Mover el gatito hacia la posición del toque en el eje X
-        if (touchX > cat.x) {
-            cat.x += cat.speed;
-        } else if (touchX < cat.x) {
-            cat.x -= cat.speed;
-        }
-    }
-
-    // Escuchar el evento de presionar una tecla (solo en escritorio)
-    window.addEventListener("keydown", moveCat);
-
-    // Escuchar el evento de toque (solo en dispositivos móviles)
-    canvas.addEventListener("touchstart", moveCatOnTouch);
-
-    // Función para iniciar el juego
-    function startGame() {
-        // Ocultar la página de bienvenida
-        document.getElementById("welcomePage").style.display = "none";
-
-        // Mostrar la página del juego
-        document.getElementById("gamePage").style.display = "block";
-
-        // Llamar a la función draw cada 16ms (~60fps)
-        setInterval(draw, 16);
-    }
-
-    // Agregar un evento al botón para iniciar el juego
-    document.getElementById("startButton").addEventListener("click", startGame);
-</script>
 
 </body>
 </html>
