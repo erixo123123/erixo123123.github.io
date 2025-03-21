@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Juego del Gatito</title>
+    <title>Bienvenida al Juego del Gatito</title>
     <style>
         body {
             background-color: #000000; /* Fondo negro */
@@ -14,21 +14,56 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
+            flex-direction: column;
         }
 
         canvas {
             border: 2px solid white;
+            display: none; /* Ocultamos el canvas hasta que se inicie el juego */
+        }
+
+        #welcomePage {
+            text-align: center;
+        }
+
+        #gamePage {
+            display: none;
+            text-align: center;
+        }
+
+        #button {
+            padding: 10px 20px;
+            background-color: #444;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 18px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        #button:hover {
+            background-color: #666;
         }
 
         h1 {
-            text-align: center;
+            font-size: 30px;
         }
+
     </style>
 </head>
 <body>
 
-<h1>¡Ayuda al gatito a llegar a la meta!</h1>
-<canvas id="gameCanvas" width="800" height="400"></canvas>
+<div id="welcomePage">
+    <h1>¡Bienvenido al Juego del Gatito!</h1>
+    <p>Haz clic en el botón para comenzar a jugar</p>
+    <button id="startButton">Iniciar Juego</button>
+</div>
+
+<div id="gamePage">
+    <h1>¡Ayuda al gatito a llegar a la meta!</h1>
+    <canvas id="gameCanvas" width="800" height="400"></canvas>
+</div>
 
 <script>
     // Obtener el contexto del canvas
@@ -74,18 +109,49 @@
         }
     }
 
-    // Mover el gatito al presionar la tecla W
+    // Mover el gatito al presionar la tecla W (en el escritorio)
     function moveCat(event) {
         if (event.key === "w" || event.key === "W") {
             cat.x += cat.speed;
         }
     }
 
-    // Escuchar el evento de presionar una tecla
+    // Función para mover el gatito con el toque en pantalla (en dispositivos móviles)
+    function moveCatOnTouch(event) {
+        // Evitar el comportamiento por defecto (scroll)
+        event.preventDefault();
+
+        // Obtener la posición del toque
+        const touchX = event.touches[0].clientX;
+
+        // Mover el gatito hacia la posición del toque en el eje X
+        if (touchX > cat.x) {
+            cat.x += cat.speed;
+        } else if (touchX < cat.x) {
+            cat.x -= cat.speed;
+        }
+    }
+
+    // Escuchar el evento de presionar una tecla (solo en escritorio)
     window.addEventListener("keydown", moveCat);
 
-    // Llamar a la función draw cada 16ms (~60fps)
-    setInterval(draw, 16);
+    // Escuchar el evento de toque (solo en dispositivos móviles)
+    canvas.addEventListener("touchstart", moveCatOnTouch);
+
+    // Función para iniciar el juego
+    function startGame() {
+        // Ocultar la página de bienvenida
+        document.getElementById("welcomePage").style.display = "none";
+
+        // Mostrar la página del juego
+        document.getElementById("gamePage").style.display = "block";
+
+        // Llamar a la función draw cada 16ms (~60fps)
+        setInterval(draw, 16);
+    }
+
+    // Agregar un evento al botón para iniciar el juego
+    document.getElementById("startButton").addEventListener("click", startGame);
 </script>
 
 </body>
