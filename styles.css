@@ -1,1 +1,16 @@
+#gatito {
+    width: 200px;
+    height: 200px;
+    background-image: url('gato1.png');
+    animation: correr 1s steps(12) infinite;
+}
 
+@keyframes correr {
+    0% { background-image: url('fila-1-columna-1'); }
+    16% { background-image: url('fila-1-columna-1'); }
+    33% { background-image: url('fila-1-columna-1'); }
+    50% { background-image: url('fila-1-columna-1'); }
+    66% { background-image: url('fila-1-columna-1'); }
+    83% { background-image: url('fila-1-columna-1'); }
+    100% { background-image: url('fila-1-columna-1'); }
+}
