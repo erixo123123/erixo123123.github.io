@@ -65,5 +65,28 @@
         <img src="gato5.png" alt="Imagen 5">
     </div>
 
+
+<button id="botonMusica" onclick="toggleMusica()">▶️ Reproducir Música</button>
+
+    <audio id="miAudio" loop>
+        <source src="laverdad.mp3" type="audio/mpeg">
+        Tu navegador no soporta el audio.
+    </audio>
+
+    <script>
+        function toggleMusica() {
+            var audio = document.getElementById("miAudio");
+            var boton = document.getElementById("botonMusica");
+
+            if (audio.paused) {
+                audio.play();
+                boton.textContent = "⏸️ Pausar Música";
+            } else {
+                audio.pause();
+                boton.textContent = "▶️ Reproducir Música";
+            }
+        }
+    </script>
+    
 </body>
 </html>
