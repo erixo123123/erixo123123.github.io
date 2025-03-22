@@ -34,21 +34,28 @@
             height: 100%;
             object-fit: cover;
             opacity: 0;
-            animation: loop 0.35s infinite linear;
+            animation: loop 0.33s infinite linear;
         }
 
         /* Configuración de los tiempos específicos */
         .slideshow img:nth-child(1) { animation-delay: 0s; }
-        .slideshow img:nth-child(2) { animation-delay: 0.07s; }
-        .slideshow img:nth-child(3) { animation-delay: 0.14s; }
-        .slideshow img:nth-child(4) { animation-delay: 0.21s; }
-        .slideshow img:nth-child(5) { animation-delay: 0.28s; }
+        .slideshow img:nth-child(2) { animation-delay: 0.03s; }
+        .slideshow img:nth-child(3) { animation-delay: 0.06s; }
+        .slideshow img:nth-child(4) { animation-delay: 0.09s; }
+        .slideshow img:nth-child(5) { animation-delay: 0.12s; }
+        .slideshow img:nth-child(6) { animation-delay: 0.15s; }
+        .slideshow img:nth-child(7) { animation-delay: 0.18s; }
+        .slideshow img:nth-child(8) { animation-delay: 0.21s; }
+        .slideshow img:nth-child(9) { animation-delay: 0.24s; }
+        .slideshow img:nth-child(10) { animation-delay: 0.27s; }
+        .slideshow img:nth-child(11) { animation-delay: 0.30s; }
+        .slideshow img:nth-child(12) { animation-delay: 0.31s; }
 
         /* Animación sin pausa */
         @keyframes loop {
             0% { opacity: 1; }
-            20% { opacity: 1; }  /* Mantiene la imagen visible */
-            21% { opacity: 0; }  /* Se desvanece */
+            8,3% { opacity: 1; }  /* Mantiene la imagen visible */
+            9,.3% { opacity: 0; }  /* Se desvanece */
             100% { opacity: 0; }
         }
 
@@ -61,11 +68,18 @@
 
     <!-- Slideshow de imágenes -->
     <div class="slideshow">
-        <img src="gato1.png" alt="Imagen 1">
-        <img src="gato2.png" alt="Imagen 2">
-        <img src="gato3.png" alt="Imagen 3">
-        <img src="gato4.png" alt="Imagen 4">
-        <img src="gato5.png" alt="Imagen 5">
+        <img src="row-1-column-1.png" alt="Imagen 1">
+        <img src="row-1-column-2.png" alt="Imagen 2">
+        <img src="row-1-column-3.png" alt="Imagen 3">
+        <img src="row-2-column-1.png" alt="Imagen 4">
+        <img src="row-2-column-2.png" alt="Imagen 5">
+        <img src="row-2-column-3.png" alt="Imagen 6">
+        <img src="row-3-column-1.png" alt="Imagen 7">
+        <img src="row-3-column-2.png" alt="Imagen 8">
+        <img src="row-3-column-3.png" alt="Imagen 9">
+        <img src="row-4-column-1.png" alt="Imagen 10">
+        <img src="row-4-column-2.png" alt="Imagen 11">
+        <img src="row-4-column-3.png" alt="Imagen 12">
     </div>
     <button id="botonMusica" onclick="toggleMusica()">▶️ Reproducir Música</button>
 
