@@ -3,133 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gato Animado</title>
-    <style>
-        body {
-            background-color: #f0f0f0; /* Fondo gris claro */
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-
-        .cat {
-            position: relative;
-            width: 100px;
-            height: 100px;
-            background-color: black;
-            border-radius: 50%; /* Cabeza del gato */
-            margin-bottom: 20px;
-            animation: move 3s infinite; /* Animación del gato */
-        }
-
-        /* Orejas del gato */
-        .ear {
-            position: absolute;
-            width: 30px;
-            height: 30px;
-            background-color: black;
-            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-        }
-
-        .ear.left {
-            left: -15px;
-            top: -15px;
-        }
-
-        .ear.right {
-            right: -15px;
-            top: -15px;
-        }
-
-        /* Ojos del gato */
-        .eye {
-            position: absolute;
-            width: 12px;
-            height: 12px;
-            background-color: white;
-            border-radius: 50%;
-            top: 30px;
-        }
-
-        .eye.left {
-            left: 20px;
-        }
-
-        .eye.right {
-            right: 20px;
-        }
-
-        /* Nariz y boca */
-        .nose {
-            position: absolute;
-            width: 12px;
-            height: 12px;
-            background-color: pink;
-            border-radius: 50%;
-            top: 45px;
-            left: 40px;
-        }
-
-        .mouth {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            border-bottom: 3px solid pink;
-            border-radius: 50%;
-            top: 55px;
-            left: 30px;
-        }
-
-        /* Cola del gato */
-        .tail {
-            position: absolute;
-            width: 80px;
-            height: 20px;
-            background-color: black;
-            border-radius: 20px;
-            bottom: -10px;
-            left: 50px;
-            transform-origin: 0% 50%;
-            animation: wag 0.5s infinite alternate; /* Animación de la cola */
-        }
-
-        /* Animación para el movimiento del gato */
-        @keyframes move {
-            0% {
-                transform: translateX(0);
-            }
-            50% {
-                transform: translateX(200px);
-            }
-            100% {
-                transform: translateX(0);
-            }
-        }
-
-        /* Animación para la cola */
-        @keyframes wag {
-            0% {
-                transform: rotate(10deg);
-            }
-            100% {
-                transform: rotate(-10deg);
-            }
-        }
-    </style>
+    <title>Gato Corriendo</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Aquí se conecta el CSS -->
 </head>
 <body>
+    <h1>Presiona "W" para hacer correr al gato</h1>
+    <div id="gatito"></div> <!-- Aquí va la animación del gato -->
 
-<div class="cat">
-    <div class="ear left"></div>
-    <div class="ear right"></div>
-    <div class="eye left"></div>
-    <div class="eye right"></div>
-    <div class="nose"></div>
-    <div class="mouth"></div>
-    <div class="tail"></div>
-</div>
-
+    <script src="script.js"></script> <!-- Aquí se conecta el JavaScript -->
 </body>
 </html>
