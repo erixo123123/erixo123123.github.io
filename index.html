@@ -51,6 +51,23 @@
             25% { opacity: 0; }    /* Se desvanece */
             100% { opacity: 0; }
         }
+
+        /* Botón de música */
+        #botonMusica {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        #botonMusica:hover {
+            background-color: #0056b3;
+        }
+
     </style>
 </head>
 <body>
@@ -67,10 +84,29 @@
         <img src="gato5.png" alt="Imagen 5">
     </div>
 
+    <!-- Botón para reproducir música -->
+    <button id="botonMusica" onclick="toggleMusica()">▶️ Reproducir Música</button>
+
     <!-- Audio -->
-    <audio autoplay loop>
+    <audio id="miAudio" loop>
         <source src="laverdad.mp3" type="audio/mpeg">
     </audio>
 
+    <script>
+        function toggleMusica() {
+            var audio = document.getElementById("miAudio");
+            var boton = document.getElementById("botonMusica");
+
+            if (audio.paused) {
+                audio.play();
+                boton.textContent = "⏸️ Pausar Música";
+            } else {
+                audio.pause();
+                boton.textContent = "▶️ Reproducir Música";
+            }
+        }
+    </script>
+
 </body>
 </html>
+
