@@ -1,8 +1,7 @@
 #gatito {
     width: 400px;
     height: 400px;
-    object-fit:contain;
-    animation: correr 0.00001s steps(12) infinite;
+    animation: correr 0.0001s steps(12) infinite;
 }
 
 @keyframes correr {
