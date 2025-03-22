@@ -7,22 +7,22 @@
     <style>
         body {
             display: flex;
-            flex-direction: column; /* Alinea elementos en columna */
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #fff; /* Fondo blanco */
+            background-color: #fff;
             margin: 0;
         }
 
         h1 {
             font-size: 24px;
             color: black;
-            margin-bottom: 10px; /* Espacio entre el texto y las imágenes */
+            margin-bottom: 10px;
         }
 
         .slideshow {
-            width: 100px; /* Ajusta al tamaño de tus imágenes */
+            width: 100px;
             height: 62.5px;
             position: relative;
             overflow: hidden;
@@ -34,7 +34,7 @@
             height: 100%;
             object-fit: cover;
             opacity: 0;
-            animation: loop 1.4s infinite linear;
+            animation: loop 1.2s infinite linear;
         }
 
         /* Configuración de los tiempos específicos */
@@ -43,30 +43,27 @@
         .slideshow img:nth-child(3) { animation-delay: 0.2s; }
         .slideshow img:nth-child(4) { animation-delay: 0.3s; }
         .slideshow img:nth-child(5) { animation-delay: 0.4s; }
-        .slideshow img:nth-child(6) { animation-delay: 0.5; }
+        .slideshow img:nth-child(6) { animation-delay: 0.5s; }
         .slideshow img:nth-child(7) { animation-delay: 0.6s; }
         .slideshow img:nth-child(8) { animation-delay: 0.7s; }
         .slideshow img:nth-child(9) { animation-delay: 0.8s; }
         .slideshow img:nth-child(10) { animation-delay: 0.9s; }
         .slideshow img:nth-child(11) { animation-delay: 1s; }
-        .slideshow img:nth-child(12) { animation-delay: 1.2s; }
+        .slideshow img:nth-child(12) { animation-delay: 1.1s; }
 
-        /* Animación sin pausa */
+        /* Animación corregida */
         @keyframes loop {
             0% { opacity: 1; }
-            8,3% { opacity: 1; }  /* Mantiene la imagen visible */
-            9,.3% { opacity: 0; }  /* Se desvanece */
+            8.3% { opacity: 1; }  /* Mantiene la imagen visible */
+            9.3% { opacity: 0; }  /* Se desvanece suavemente */
             100% { opacity: 0; }
         }
-
     </style>
 </head>
 <body>
 
-    <!-- Texto "CTMMM" -->
-    <h1>gatito</h1>
+    <h1>🐱 Gatito 🐱</h1>
 
-    <!-- Slideshow de imágenes -->
     <div class="slideshow">
         <img src="row-1-column-1.png" alt="Imagen 1">
         <img src="row-1-column-2.png" alt="Imagen 2">
@@ -81,11 +78,11 @@
         <img src="row-4-column-2.png" alt="Imagen 11">
         <img src="row-4-column-3.png" alt="Imagen 12">
     </div>
+
     <button id="botonMusica" onclick="toggleMusica()">▶️ Reproducir Música</button>
 
-    <!-- Audio -->
     <audio id="miAudio" loop>
-        <source src="laverdad.mp3.mp3" type="audio/mpeg">
+        <source src="laverdad.mp3" type="audio/mpeg">
         Tu navegador no soporta el audio.
     </audio>
 
@@ -102,7 +99,8 @@
                 boton.textContent = "▶️ Reproducir Música";
             }
         }
-    </script>    
+    </script>
+
 </body>
 </html>
 
