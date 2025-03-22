@@ -1,16 +1,15 @@
 #gatito {
     width: 200px;
     height: 200px;
-    background-image: url('gato1.png');
-    animation: correr 1s steps(12) infinite;
+    animation: correr 1s steps(6) infinite;
 }
 
 @keyframes correr {
-    0% { background-image: url('fila-1-columna-1'); }
-    16% { background-image: url('fila-1-columna-1'); }
-    33% { background-image: url('fila-1-columna-1'); }
-    50% { background-image: url('fila-1-columna-1'); }
-    66% { background-image: url('fila-1-columna-1'); }
-    83% { background-image: url('fila-1-columna-1'); }
-    100% { background-image: url('fila-1-columna-1'); }
+    0% { background-image: url('fila-1-columna-1.png'); }
+    16% { background-image: url('fila-1-columna-2.png'); }
+    33% { background-image: url('fila-1-columna-3.png'); }
+    50% { background-image: url('fila-1-columna-4.png'); }
+    66% { background-image: url('fila-2-columna-1.png'); }
+    83% { background-image: url('fila-2-columna-2.png'); }
+    100% { background-image: url('fila-2-columna-3.png'); }
 }
