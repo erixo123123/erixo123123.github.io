@@ -10,11 +10,12 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #222;
+            background-color: #fff; /* Fondo blanco */
+            margin: 0;
         }
 
         .slideshow {
-            width: 300px; /* Ajusta según el tamaño de tus imágenes */
+            width: 300px; /* Ajusta al tamaño de tus imágenes */
             height: 300px;
             position: relative;
             overflow: hidden;
@@ -26,28 +27,31 @@
             height: 100%;
             object-fit: cover;
             opacity: 0;
-            animation: loop 1.63s infinite; /* Suma de los tiempos: 0.4 + 0.7 + 0.18 + 0.35 = 1.63s */
+            animation: loop 1.63s infinite;
         }
 
+        /* Configuración de los tiempos específicos */
         .slideshow img:nth-child(1) { animation-delay: 0s; }
         .slideshow img:nth-child(2) { animation-delay: 0.4s; }
         .slideshow img:nth-child(3) { animation-delay: 1.1s; }
         .slideshow img:nth-child(4) { animation-delay: 1.28s; }
 
+        /* Animación en bucle */
         @keyframes loop {
             0% { opacity: 1; }
-            24.5% { opacity: 1; }  /* Duración de la imagen en su frame */
-            25% { opacity: 0; }
+            24.5% { opacity: 1; }  /* Mantiene la imagen visible */
+            25% { opacity: 0; }    /* Se desvanece */
             100% { opacity: 0; }
         }
     </style>
 </head>
 <body>
     <div class="slideshow">
-        <img src="gato1.png" alt="Imagen 1">
-        <img src="gato2.png" alt="Imagen 2">
-        <img src="gato3.png" alt="Imagen 3">
-        <img src="gato4.png" alt="Imagen 4">
+        <img src="imagen1.jpg" alt="Imagen 1">
+        <img src="imagen2.jpg" alt="Imagen 2">
+        <img src="imagen3.jpg" alt="Imagen 3">
+        <img src="imagen4.jpg" alt="Imagen 4">
     </div>
 </body>
 </html>
+
