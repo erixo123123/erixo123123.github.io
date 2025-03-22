@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Loop de Imágenes</title>
+    <title>Loop de Imágenes Sin Pausa</title>
     <style>
         body {
             display: flex;
@@ -27,7 +27,7 @@
             height: 100%;
             object-fit: cover;
             opacity: 0;
-            animation: loop 1.63s infinite;
+            animation: loop 1.63s infinite linear;
         }
 
         /* Configuración de los tiempos específicos */
@@ -36,7 +36,7 @@
         .slideshow img:nth-child(3) { animation-delay: 0.07s; }
         .slideshow img:nth-child(4) { animation-delay: 0.18s; }
 
-        /* Animación en bucle */
+        /* Animación sin pausa */
         @keyframes loop {
             0% { opacity: 1; }
             24.5% { opacity: 1; }  /* Mantiene la imagen visible */
