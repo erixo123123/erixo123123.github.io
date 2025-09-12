@@ -7,31 +7,49 @@
     <style>
         body {
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
 
             /* Fondo con imagen estática */
-            background-image: url("c6d97c41e3d1cb617b8f0cdd9e7eb22b.jpg"); /* cambia "fondo.jpg" por tu archivo */
+            background-image: url("fondo.jpg");
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
             background-attachment: fixed;
+            position: relative; /* importante para posicionar elementos dentro */
         }
 
-        h1 {
-            font-size: 24px;
-            color: white; /* texto blanco */
-            margin: 0;
-
-            /* Posición en la esquina superior izquierda */
+        /* Contenedor para texto + botón */
+        .zona-superior-izquierda {
             position: absolute;
-            top: 10px;
-            left: 10px;
-            text-align: left;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.6); /* sombreado para mejor visibilidad */
+            top: 0;
+            left: 0;
+            width: 50%;   /* mitad izquierda */
+            height: 50%;  /* mitad superior */
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* centrado vertical */
+            align-items: center;     /* centrado horizontal */
+        }
+
+        .zona-superior-izquierda h1 {
+            font-size: 24px;
+            color: white;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.6);
+            text-align: center;
+        }
+
+        .zona-superior-izquierda button {
+            padding: 10px 15px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            background-color: rgba(0,0,0,0.6);
+            color: white;
         }
 
         .slideshow {
@@ -40,16 +58,27 @@
             position: relative;
             overflow: hidden;
         }
-        #botonMusica {
+
+        .slideshow img {
             position: absolute;
-            top: 50px; /* debajo del texto */
-            left: 10px;
-            padding: 10px 15px;
-            font-size: 16px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            background-color: rgba(255,255,255,0.8);
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            animation: loop 0.45s infinite linear;
+        }
+
+        .slideshow img:nth-child(1) { animation-delay: 0s; }
+        .slideshow img:nth-child(2) { animation-delay: 0.09s; }
+        .slideshow img:nth-child(3) { animation-delay: 0.18s; }
+        .slideshow img:nth-child(4) { animation-delay: 0.27s; }
+        .slideshow img:nth-child(5) { animation-delay: 0.36s; }
+
+        @keyframes loop {
+            0% { opacity: 1; }
+            19% { opacity: 1; }
+            20% { opacity: 0; }
+            100% { opacity: 0; }
         }
     </style>
 </head>
