@@ -8,17 +8,17 @@
     body {
       margin: 0;
       height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: url("c6d97c41e3d1cb617b8f0cdd9e7eb22b.jpg") no-repeat center center fixed;
-      background-size: cover;
       font-family: Arial, sans-serif;
       position: relative;
       overflow: hidden;
+      background: url("c6d97c41e3d1cb617b8f0cdd9e7eb22b.jpg") no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
-    .contenedor {
+    .pantalla, .contenedor {
       text-align: center;
       background: rgba(0, 0, 0, 0.6);
       padding: 20px;
@@ -41,6 +41,10 @@
       transition: 0.3s;
     }
 
+    button:hover {
+      transform: scale(1.1);
+    }
+
     #si {
       background-color: green;
       color: white;
@@ -49,10 +53,6 @@
     #no {
       background-color: red;
       color: white;
-    }
-
-    button:hover {
-      transform: scale(1.1);
     }
 
     /* Screamer oculto */
@@ -80,7 +80,6 @@
       left: 0;
     }
 
-    /* Texto "por pesa" en esquina inferior derecha */
     #screamer p {
       position: absolute;
       bottom: 10px;
@@ -93,8 +92,15 @@
   </style>
 </head>
 <body>
-  <div class="contenedor" id="pregunta">
-    <h1>Hola linda, quieres jugar Mine?</h1>
+  <!-- Pantalla inicial -->
+  <div class="pantalla" id="inicio">
+    <h1>Usa audífonos para disfrutar la música o en su defecto sube el volumen del telefono 🎧</h1>
+    <button id="audifonos">Listo</button>
+  </div>
+
+  <!-- Pregunta Mine (oculta al inicio) -->
+  <div class="contenedor" id="pregunta" style="display:none;">
+    <h1>¿Quieres jugar Mine?</h1>
     <button id="si">Sí</button>
     <button id="no">No</button>
   </div>
@@ -107,26 +113,33 @@
   </div>
 
   <script>
+    // Botón de audífonos
+    document.getElementById("audifonos").addEventListener("click", function() {
+      document.getElementById("inicio").style.display = "none";
+      document.getElementById("pregunta").style.display = "block";
+    });
+
     // Botón "Sí"
     document.getElementById("si").addEventListener("click", function() {
       document.getElementById("pregunta").innerHTML = "<h1>Respóndeme por IG 😏</h1>";
     });
 
-    // Botón "No"
+    // Botón "No" con audio desde 0.5s
     document.getElementById("no").addEventListener("click", function() {
       var screamer = document.getElementById("screamer");
       screamer.style.display = "flex";
 
       var grito = document.getElementById("grito");
-      grito.currentTime = 0.5; // empieza desde 0.5 segundos
+      grito.currentTime = 0.5; // empieza desde 0.5s
       grito.volume = 1;
       grito.play().catch(err => console.log("Error al reproducir audio:", err));
 
       setTimeout(() => {
         screamer.style.display = "none";
-      }, 3000); // dura 3 segundos
+      }, 3000);
     });
   </script>
 </body>
 </html>
+
 
