@@ -11,8 +11,14 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #fff;
             margin: 0;
+
+            /* Fondo con imagen estática */
+            background-image: url("cb"); /* cambia "fondo.jpg" por tu archivo */
+            background-size: cover;       /* la imagen cubre toda la pantalla */
+            background-position: center;  /* centrada */
+            background-repeat: no-repeat; /* no se repite */
+            background-attachment: fixed; /* queda estática */
         }
 
         h1 {
@@ -47,9 +53,19 @@
         /* Animación sin pausas */
         @keyframes loop {
             0% { opacity: 1; }
-            19% { opacity: 1; }  /* Mantiene la imagen visible */
-            20% { opacity: 0; }  /* Se desvanece suavemente */
+            19% { opacity: 1; }
+            20% { opacity: 0; }
             100% { opacity: 0; }
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 15px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            background-color: rgba(255,255,255,0.8);
         }
     </style>
 </head>
@@ -65,8 +81,7 @@
         <img src="gato5.png" alt="Imagen 5">
     </div>
 
-
-<button id="botonMusica" onclick="toggleMusica()">▶️ Reproducir Música</button>
+    <button id="botonMusica" onclick="toggleMusica()">▶️ Reproducir Música</button>
 
     <audio id="miAudio" loop>
         <source src="claudio.mp3" type="audio/mpeg">
