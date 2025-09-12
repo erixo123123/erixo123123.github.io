@@ -94,7 +94,7 @@
 <body>
   <!-- Pantalla inicial -->
   <div class="pantalla" id="inicio">
-    <h1>Usa audífonos para disfrutar la música o en su defecto sube el volumen del telefono 🎧</h1>
+    <h1>Usa audífonos para disfrutar la música o en su defecto sube el volumen del teléfono 🎧</h1>
     <button id="audifonos">Listo</button>
   </div>
 
@@ -124,19 +124,29 @@
       document.getElementById("pregunta").innerHTML = "<h1>Respóndeme por IG 😏</h1>";
     });
 
-    // Botón "No" con audio desde 0.5s
+    // Botón "No" con audio desde 0.5s y sincronización
     document.getElementById("no").addEventListener("click", function() {
       var screamer = document.getElementById("screamer");
-      screamer.style.display = "flex";
-
       var grito = document.getElementById("grito");
+
       grito.currentTime = 0.5; // empieza desde 0.5s
       grito.volume = 1;
-      grito.play().catch(err => console.log("Error al reproducir audio:", err));
+
+      // Intentamos reproducir el audio y mostramos la imagen apenas comienza
+      grito.play().then(() => {
+        // Muestra la imagen de manera sincronizada con el sonido
+        setTimeout(() => {
+          screamer.style.display = "flex";
+        }, 50); // pequeño retraso para que se perciba al mismo tiempo
+      }).catch(err => {
+        console.log("Error al reproducir audio:", err);
+        // Si falla, mostramos la imagen igual
+        screamer.style.display = "flex";
+      });
 
       setTimeout(() => {
         screamer.style.display = "none";
-      }, 3000);
+      }, 3000); // duración total del screamer
     });
   </script>
 </body>
