@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mine?</title>
 
-  <!-- Vista previa personalizada con la imagen de GitHub -->
+  <!-- Vista previa personalizada -->
   <meta property="og:title" content="Mine?">
   <meta property="og:description" content="Una página misteriosa 👀">
   <meta property="og:image" content="https://raw.githubusercontent.com/erixo123123/erixo123123.github.io/main/c6d97c41e3d1cb617b8f0cdd9e7eb22b.jpg">
@@ -18,8 +18,6 @@
       margin: 0;
       height: 100vh;
       font-family: Arial, sans-serif;
-      position: relative;
-      overflow: hidden;
       background: url("c6d97c41e3d1cb617b8f0cdd9e7eb22b.jpg") no-repeat center center fixed;
       background-size: cover;
       display: flex;
@@ -47,7 +45,8 @@
       border: none;
       border-radius: 8px;
       cursor: pointer;
-      transition: 0.3s;
+      transition: transform 0.3s;
+      position: relative;
     }
 
     button:hover {
@@ -62,40 +61,14 @@
     #no {
       background-color: red;
       color: white;
+      position: absolute; /* para que se pueda mover */
     }
 
-    /* Screamer oculto */
-    #screamer {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: black;
-      display: none; /* oculto al inicio */
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-      flex-direction: column;
-    }
-
-    #screamer img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      position: absolute;
-      top: 0;
-      left: 0;
-    }
-
-    #screamer p {
-      position: absolute;
-      bottom: 10px;
-      right: 15px;
-      color: white;
-      font-size: 14px;
-      font-style: italic;
-      text-shadow: 1px 1px 3px black;
+    #pregunta {
+      position: relative;
+      width: 300px;
+      height: 200px;
+      margin: auto;
     }
   </style>
 </head>
@@ -106,28 +79,15 @@
     <button id="audifonos">Listo</button>
   </div>
 
-  <!-- Pregunta Mine (oculta al inicio) -->
+  <!-- Pregunta Mine -->
   <div class="contenedor" id="pregunta" style="display:none;">
     <h1>¿Quieres jugar Mine?</h1>
     <button id="si">Sí</button>
     <button id="no">No</button>
   </div>
 
-  <!-- Screamer -->
-  <div id="screamer">
-    <img src="screamer.jpg" alt="😱">
-    <p>por pesa</p>
-    <audio id="grito" src="Jumpscare.mp3" preload="auto"></audio>
-  </div>
-
   <script>
-    var grito = document.getElementById("grito");
-    var screamer = document.getElementById("screamer");
-
-    // Forzar carga anticipada del audio
-    grito.load();
-
-    // Botón de inicio
+    // Botón "Listo"
     document.getElementById("audifonos").addEventListener("click", function() {
       document.getElementById("inicio").style.display = "none";
       document.getElementById("pregunta").style.display = "block";
@@ -138,20 +98,20 @@
       document.getElementById("pregunta").innerHTML = "<h1>Respóndeme por IG</h1>";
     });
 
-    // Botón "No"
-    document.getElementById("no").addEventListener("click", function() {
-      document.getElementById("pregunta").style.display = "none";
+    // Botón "No" que se escapa al presionarlo
+    var btnNo = document.getElementById("no");
+    var contenedor = document.getElementById("pregunta");
 
-      // Esperar a que el audio esté listo para reproducirse
-      grito.addEventListener("canplaythrough", function playOnce() {
-        // Pequeño delay para sincronizar mejor (50ms)
-        setTimeout(() => {
-          screamer.style.display = "flex";
-          grito.play().catch(err => console.log("Error al reproducir grito:", err));
-        }, 50);
+    btnNo.addEventListener("click", function(e) {
+      e.preventDefault(); // evita que se quede clicado
 
-        grito.removeEventListener("canplaythrough", playOnce); // se ejecuta solo una vez
-      });
+      let maxX = contenedor.clientWidth - btnNo.offsetWidth - 20;
+      let maxY = contenedor.clientHeight - btnNo.offsetHeight - 20;
+      let randX = Math.floor(Math.random() * maxX);
+      let randY = Math.floor(Math.random() * maxY);
+
+      btnNo.style.left = randX + "px";
+      btnNo.style.top = randY + "px";
     });
   </script>
 </body>
