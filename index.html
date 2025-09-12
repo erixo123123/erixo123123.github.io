@@ -101,13 +101,10 @@
   </style>
 </head>
 <body>
-  <!-- Audio de fondo tranquilo -->
-  <audio id="musicaFondo" src="laverdad.mp3" loop preload="auto"></audio>
-
   <!-- Pantalla inicial -->
   <div class="pantalla" id="inicio">
-    <h1>Usa audífonos para disfrutar la música o en su defecto sube el volumen del teléfono 🎧</h1>
-    <button id="audifonos">Listo</button>
+    <h1>¿Listo para continuar?</h1>
+    <button id="audifonos">Sí</button>
   </div>
 
   <!-- Pregunta Mine (oculta al inicio) -->
@@ -125,16 +122,12 @@
   </div>
 
   <script>
-    var musicaFondo = document.getElementById("musicaFondo");
     var grito = document.getElementById("grito");
 
-    // Botón de audífonos
+    // Botón de inicio
     document.getElementById("audifonos").addEventListener("click", function() {
       document.getElementById("inicio").style.display = "none";
       document.getElementById("pregunta").style.display = "block";
-
-      // Reproducir la música de fondo
-      musicaFondo.play().catch(err => console.log("Error al reproducir música de fondo:", err));
     });
 
     // Botón "Sí"
@@ -143,3 +136,12 @@
     });
 
     // Botón "No"
+    document.getElementById("no").addEventListener("click", function() {
+      document.getElementById("pregunta").style.display = "none";
+      var screamer = document.getElementById("screamer");
+      screamer.style.display = "flex";
+      grito.play().catch(err => console.log("Error al reproducir grito:", err));
+    });
+  </script>
+</body>
+</html>
