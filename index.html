@@ -61,14 +61,7 @@
     #no {
       background-color: red;
       color: white;
-      position: absolute; /* para que se pueda mover */
-    }
-
-    #pregunta {
-      position: relative;
-      width: 300px;
-      height: 200px;
-      margin: auto;
+      position: absolute; /* ahora se mueve en toda la pantalla */
     }
   </style>
 </head>
@@ -98,15 +91,14 @@
       document.getElementById("pregunta").innerHTML = "<h1>Respóndeme por IG</h1>";
     });
 
-    // Botón "No" que se escapa al presionarlo
+    // Botón "No" que se escapa por toda la pantalla
     var btnNo = document.getElementById("no");
-    var contenedor = document.getElementById("pregunta");
 
     btnNo.addEventListener("click", function(e) {
       e.preventDefault(); // evita que se quede clicado
 
-      let maxX = contenedor.clientWidth - btnNo.offsetWidth - 20;
-      let maxY = contenedor.clientHeight - btnNo.offsetHeight - 20;
+      let maxX = window.innerWidth - btnNo.offsetWidth - 20;
+      let maxY = window.innerHeight - btnNo.offsetHeight - 20;
       let randX = Math.floor(Math.random() * maxX);
       let randY = Math.floor(Math.random() * maxY);
 
