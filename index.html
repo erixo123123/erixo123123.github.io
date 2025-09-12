@@ -5,14 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mine?</title>
 
-  <!-- Forzar que no haya preview al compartir -->
+  <!-- Vista previa personalizada con la imagen de GitHub -->
   <meta property="og:title" content="Mine?">
-  <meta property="og:description" content=" ">
-  <meta property="og:image" content="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==">
+  <meta property="og:description" content="Una página misteriosa 👀">
+  <meta property="og:image" content="https://raw.githubusercontent.com/erixo123123/erixo123123.github.io/main/c6d97c41e3d1cb617b8f0cdd9e7eb22b.jpg">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://tuusuario.github.io/tu-repo/">
-  <meta name="twitter:card" content="summary">
-  
+  <meta property="og:url" content="https://erixo123123.github.io/">
+  <meta name="twitter:card" content="summary_large_image">
+
   <style>
     body {
       margin: 0;
@@ -142,31 +142,4 @@
       document.getElementById("pregunta").innerHTML = "<h1>Respóndeme por IG 😏</h1>";
     });
 
-    // Botón "No" con screamer sincronizado y deteniendo música de fondo
-    document.getElementById("no").addEventListener("click", function() {
-      // Detener música de fondo inmediatamente
-      musicaFondo.pause();
-      musicaFondo.currentTime = 0;
-
-      var screamer = document.getElementById("screamer");
-
-      grito.currentTime = 0.5; // empieza desde 0.5s
-      grito.volume = 1;
-
-      // Reproducir audio y mostrar imagen casi al mismo tiempo
-      grito.play().then(() => {
-        setTimeout(() => {
-          screamer.style.display = "flex";
-        }, 50);
-      }).catch(err => {
-        console.log("Error al reproducir audio:", err);
-        screamer.style.display = "flex";
-      });
-
-      setTimeout(() => {
-        screamer.style.display = "none";
-      }, 3000);
-    });
-  </script>
-</body>
-</html>
+    // Botón "No"
