@@ -1,113 +1,110 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cute Car</title>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mine?</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: url("c6d97c41e3d1cb617b8f0cdd9e7eb22b.jpg") no-repeat center center fixed;
+      background-size: cover;
+      font-family: Arial, sans-serif;
+      position: relative;
+      overflow: hidden;
+    }
 
-            /* Fondo con imagen estática */
-            background-image: url("fondo.jpg");
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            position: relative; /* importante para posicionar elementos dentro */
-        }
+    .contenedor {
+      text-align: center;
+      background: rgba(0, 0, 0, 0.6);
+      padding: 20px;
+      border-radius: 12px;
+      color: white;
+    }
 
-        /* Contenedor para texto + botón */
-        .zona-superior-izquierda {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 50%;   /* mitad izquierda */
-            height: 50%;  /* mitad superior */
-            display: flex;
-            flex-direction: column;
-            justify-content: center; /* centrado vertical */
-            align-items: center;     /* centrado horizontal */
-        }
+    h1 {
+      margin-bottom: 20px;
+      font-size: 28px;
+    }
 
-        .zona-superior-izquierda h1 {
-            font-size: 24px;
-            color: white;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 5px rgba(0,0,0,0.6);
-            text-align: center;
-        }
+    button {
+      margin: 10px;
+      padding: 10px 20px;
+      font-size: 18px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
 
-        .zona-superior-izquierda button {
-            padding: 10px 15px;
-            font-size: 16px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            background-color: rgba(0,0,0,0.6);
-            color: white;
-        }
+    #si {
+      background-color: green;
+      color: white;
+    }
 
-        .slideshow {
-            width: 100px;
-            height: 62.5px;
-            position: relative;
-            overflow: hidden;
-        }
+    #no {
+      background-color: red;
+      color: white;
+    }
 
-        .slideshow img {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0;
-            animation: loop 0.45s infinite linear;
-        }
+    button:hover {
+      transform: scale(1.1);
+    }
 
-        .slideshow img:nth-child(1) { animation-delay: 0s; }
-        .slideshow img:nth-child(2) { animation-delay: 0.09s; }
-        .slideshow img:nth-child(3) { animation-delay: 0.18s; }
-        .slideshow img:nth-child(4) { animation-delay: 0.27s; }
-        .slideshow img:nth-child(5) { animation-delay: 0.36s; }
+    /* Screamer oculto */
+    #screamer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      display: none;
+    }
 
-        @keyframes loop {
-            0% { opacity: 1; }
-            19% { opacity: 1; }
-            20% { opacity: 0; }
-            100% { opacity: 0; }
-        }
-    </style>
+    #screamer img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  </style>
 </head>
 <body>
+  <div class="contenedor" id="pregunta">
+    <h1>¿Quieres jugar Mine?</h1>
+    <button id="si">Sí</button>
+    <button id="no">No</button>
+  </div>
 
-    <h1>Sale su minecraft</h1>
+  <!-- Screamer -->
+  <div id="screamer">
+    <img src="screamer.jpg" alt="😱">
+    <audio id="grito" src="grito.mp3"></audio>
+  </div>
 
-    <button id="botonMusica" onclick="toggleMusica()">▶️ Reproducir Música</button>
+  <script>
+    document.getElementById("si").addEventListener("click", function() {
+      document.getElementById("pregunta").innerHTML = "<h1>Respóndeme por IG 😏</h1>";
+    });
 
-    <audio id="miAudio" loop>
-        <source src="claudio.mp3" type="audio/mpeg">
-        Tu navegador no soporta el audio.
-    </audio>
-
-    <script>
-        function toggleMusica() {
-            var audio = document.getElementById("miAudio");
-            var boton = document.getElementById("botonMusica");
-
-            if (audio.paused) {
-                audio.play();
-                boton.textContent = "⏸️ Pausar Música";
-            } else {
-                audio.pause();
-                boton.textContent = "▶️ Reproducir Música";
-            }
-        }
-    </script>
-    
+    document.getElementById("no").addEventListener("click", function() {
+      var screamer = document.getElementById("screamer");
+      screamer.style.display = "flex";
+      var grito = document.getElementById("grito");
+      grito.play();
+      setTimeout(() => {
+        screamer.style.display = "none";
+      }, 3000); // dura 3 segundos
+    });
+  </script>
 </body>
 </html>
 
