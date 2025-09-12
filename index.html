@@ -103,19 +103,25 @@
   <div id="screamer">
     <img src="screamer.jpg" alt="😱">
     <p>por pesa</p>
-    <audio id="grito" src="Jumpscare.mp3"></audio>
+    <audio id="grito" src="Jumpscare.mp3" preload="auto"></audio>
   </div>
 
   <script>
+    // Botón "Sí"
     document.getElementById("si").addEventListener("click", function() {
       document.getElementById("pregunta").innerHTML = "<h1>Respóndeme por IG 😏</h1>";
     });
 
+    // Botón "No"
     document.getElementById("no").addEventListener("click", function() {
       var screamer = document.getElementById("screamer");
       screamer.style.display = "flex";
+
       var grito = document.getElementById("grito");
-      grito.play();
+      grito.currentTime = 0.5; // empieza desde 0.5 segundos
+      grito.volume = 1;
+      grito.play().catch(err => console.log("Error al reproducir audio:", err));
+
       setTimeout(() => {
         screamer.style.display = "none";
       }, 3000); // dura 3 segundos
@@ -123,5 +129,4 @@
   </script>
 </body>
 </html>
-
 
