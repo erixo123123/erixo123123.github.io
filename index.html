@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mine?</title>
 
-  <!-- Vista previa personalizada -->
   <meta property="og:title" content="Mine?">
   <meta property="og:description" content="Una página misteriosa 👀">
   <meta property="og:image" content="https://raw.githubusercontent.com/erixo123123/erixo123123.github.io/main/c6d97c41e3d1cb617b8f0cdd9e7eb22b.jpg">
@@ -46,7 +45,6 @@
       border-radius: 8px;
       cursor: pointer;
       transition: transform 0.3s;
-      position: relative;
     }
 
     button:hover {
@@ -61,7 +59,7 @@
     #no {
       background-color: red;
       color: white;
-      position: absolute; /* ahora se mueve en toda la pantalla */
+      /* inicialmente centrado */
     }
   </style>
 </head>
@@ -74,7 +72,7 @@
 
   <!-- Pregunta Mine -->
   <div class="contenedor" id="pregunta" style="display:none;">
-    <h1>Hola linda,quieres jugar Mine conmigo?</h1>
+    <h1>Hola linda, ¿quieres jugar Mine conmigo?</h1>
     <button id="si">Sí</button>
     <button id="no">No</button>
   </div>
@@ -91,12 +89,11 @@
       document.getElementById("pregunta").innerHTML = "<h1>Respóndeme por IG 🐧</h1>";
     });
 
-    // Botón "No" que se escapa por toda la pantalla
+    // Botón "No" que se escapa en PC y móviles
     var btnNo = document.getElementById("no");
 
-    btnNo.addEventListener("click", function(e) {
-      e.preventDefault(); // evita que se quede clicado
-
+    function moverBoton() {
+      btnNo.style.position = "absolute"; // ahora sí se mueve
       let maxX = window.innerWidth - btnNo.offsetWidth - 20;
       let maxY = window.innerHeight - btnNo.offsetHeight - 20;
       let randX = Math.floor(Math.random() * maxX);
@@ -104,7 +101,11 @@
 
       btnNo.style.left = randX + "px";
       btnNo.style.top = randY + "px";
-    });
+    }
+
+    // Detecta intento de tocar o clickear
+    btnNo.addEventListener("click", moverBoton);
+    btnNo.addEventListener("touchstart", moverBoton);
   </script>
 </body>
 </html>
